@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Debouncing Example</title>
+</head>
+<body>
+  <h1>Debouncing Example</h1>
+  
+  <input type="text" id="searchInput" placeholder="Search...">
+
+  <script>
+    // Debounce function
+    function debounce(func, delay) {
+      let timeoutId;
+      
+      return function() {
+        clearTimeout(timeoutId);
+
+        timeoutId = setTimeout(func, delay);
+      };
+    }
+
+    // Function to be executed after debounce
+    function performSearch() {
+      const searchText = document.getElementById("searchInput").value;
+      console.log("Searching for:", searchText);
+      // Perform actual search or any other desired action here
+    }
+
+    // Apply debounce to the search input
+    const searchInput = document.getElementById("searchInput");
+    const debounceSearch = debounce(performSearch, 500); // Delay of 500ms
+
+    searchInput.addEventListener("input", debounceSearch);
+  </script>
+</body>
+</html>
